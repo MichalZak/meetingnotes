@@ -1,0 +1,17 @@
+<ion-header>
+
+  <ion-navbar  color="primary">
+    <ion-title>{{getTitle()}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+ 
+<ion-content  id="editor" padding>
+    <ace-editor
+       #editor 
+       [mode]="'markdown'"
+       [readOnly]="false"
+       [autoUpdateContent]="true"
+       (textChanged)="onChange($event)"></ace-editor>
+</ion-content>
