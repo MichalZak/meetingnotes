@@ -5,6 +5,7 @@ import { DataProvider } from '../../providers';
 import { generateId, delay } from '../../utils';
 import * as _ from "lodash";
 import * as moment from 'moment';
+import { Keyboard } from '@ionic-native/keyboard';
 
 import 'brace';
 import 'brace/theme/dreamweaver';
@@ -27,7 +28,8 @@ export class NotePage {
 
 
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
+              public keyboard: Keyboard, 
               public alertCtrl: AlertController,
               public dataProvider: DataProvider,
               public toastCtrl: ToastController,
@@ -54,6 +56,7 @@ export class NotePage {
   ionViewDidEnter(){
     console.log("IonViewDidEnter: ", this.note);
     this.ref.markForCheck();  
+    this.keyboard.show();
   }
 
   ionViewWillEnter() {
@@ -65,11 +68,18 @@ export class NotePage {
     else {
       this.subscribe(id);
     }
+
+    let tabBarElement:any = document.querySelector('.tabbar.show-tabbar');
+    tabBarElement.style.display = 'none';
+    this.ref.markForCheck(); 
   } 
 
   ionViewWillLeave(){
     this.save(); 
     this.subscription.unsubscribe();
+    this.keyboard.close();
+    let tabBarElement:any = document.querySelector('.tabbar.show-tabbar');
+    tabBarElement.style.display = 'flex';
   }
 
   async create(){

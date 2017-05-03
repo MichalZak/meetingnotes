@@ -6,8 +6,26 @@ page-note {
 
     ace-editor {
         width: 100%;
-        height: 100%;;
+        height: 100%;
 
         
+    }
+
+    ion-tabs {
+         .show-tabbar {
+            display: none;
+        }
+        div .tabs .tabbar {
+            display: none;
+        }
+    }
+
+    .tabbar.show-tabbar {
+        display: none;
+        height: 200px;
+    }
+
+    .tabs-md .tabbar {
+        background: red;
     }
 }
